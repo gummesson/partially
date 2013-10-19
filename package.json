@@ -1,0 +1,39 @@
+{
+  "name": "partially",
+  "version": "0.1.0",
+  "description": "Use partials in your markup.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gummesson/partially.git"
+  },
+  "author": "Ellen Gummesson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gummesson/partially/issues"
+  },
+  "keywords": [
+    "html",
+    "partial",
+    "partials"
+  ],
+  "main": "./lib/partially",
+  "bin": {
+    "partially": "./bin/partially"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "commander": "~2.0.0",
+    "chalk": "~0.2.1"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "matchdep": "~0.3.0",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-simple-mocha": "~0.4.0",
+    "must": "~0.6.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-shell": "~0.5.0"
+  }
+}

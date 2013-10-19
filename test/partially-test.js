@@ -16,7 +16,7 @@ describe('Partially', function() {
   };
 
   it('must generate the output file', function(done) {
-    Partially(path.file, path.partials, path.output).render(function(err, file) {
+    Partially(path.file, path.partials, path.output).compile(function(err, file) {
       if (err) { throw err; }
       fsExists('test/fixtures/output/index.html').must.be.true();
       done();

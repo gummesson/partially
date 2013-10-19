@@ -34,7 +34,7 @@ npm install [-g] partially
 
 ### API
 
-#### `Partially(file, partials, output).render(callback);`
+#### `Partially(file, partials, output).compile(callback);`
 
 - `file` defaults to `template/index.html`.
 - `partials` defaults to `partials`.

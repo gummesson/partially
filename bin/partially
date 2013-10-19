@@ -22,7 +22,7 @@ var file     = program.file,
     partials = program.partials,
     output   = program.output;
 
-Partially(file, partials, output).render(function(err, filename) {
+Partially(file, partials, output).compile(function(err, filename) {
   if (err) { throw err; }
   console.log(chalk.green('"' + filename + '" was saved!'));
 });

@@ -34,12 +34,49 @@ npm install [-g] partially
 
 ### API
 
-#### `Partially(file, partials, output).compile(callback);`
+#### Partially(file, partials, output).render(callback);
+
+- `file` defaults to `template/index.html`.
+- `partials` defaults to `partials`.
+- `output` defaults to `output`.
+- `callback` returns `err`, the output file's full path and the parsed content.
+
+##### Example
+
+~~~ javascript
+var Partially = require('partially');
+
+var file     = 'path/to/file',
+    partials = 'path/to/partials',
+    output   = 'path/to/output';
+
+Partially(file, partials, output).render(function(err, filename, content) {
+  if (err) { throw err; }
+  console.log(content);
+});
+~~~
+
+#### Partially(file, partials, output).compile(callback);
 
 - `file` defaults to `template/index.html`.
 - `partials` defaults to `partials`.
 - `output` defaults to `output`.
 - `callback` returns `err` and the output file's full path.
+
+##### Example
+
+~~~ javascript
+var Partially = require('partially');
+
+var file     = 'path/to/file',
+    partials = 'path/to/partials',
+    output   = 'path/to/output';
+
+Partially(file, partials, output).compile(function(err, filename) {
+  if (err) { throw err; }
+  console.log('"' + filename + '" was saved.');
+});
+~~~
 
 ## License
 

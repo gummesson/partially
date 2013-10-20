@@ -25,7 +25,7 @@ module.exports = function(grunt) {
       ]
     },
 
-    cmd: {
+    build: {
       html: 'cd examples/html && partially',
       haml: 'cd examples/haml && partially -f template/index.haml',
       jade: 'cd examples/jade && partially -f template/index.jade',
@@ -37,6 +37,18 @@ module.exports = function(grunt) {
         'examples/jade/output',
         'examples/markdown/output'
       ]
+    },
+
+    docs: {
+      src: [
+        'lib/partially.js',
+        'lib/utils/get.js',
+        'lib/utils/convert.js',
+        'lib/utils/replace.js',
+        'lib/utils/file.js'
+      ],
+      dest: 'tmp/index.js',
+      build: 'docco --output docs tmp/index.js'
     }
   };
 
@@ -62,8 +74,17 @@ module.exports = function(grunt) {
       },
 
       examples: {
-        src: project.cmd.tmp
-      },
+        src: project.build.tmp
+      }
+    },
+
+
+    concat: {
+      js: {
+        src: project.docs.src,
+        dest: project.docs.dest,
+        nonull: true
+      }
     },
 
     shell: {
@@ -71,34 +92,60 @@ module.exports = function(grunt) {
         options: {
           stdout: true
         },
-        command: project.cmd.html
+        command: project.build.html
       },
 
       haml: {
         options: {
           stdout: true
         },
-        command: project.cmd.haml
+        command: project.build.haml
       },
 
       jade: {
         options: {
           stdout: true
         },
-        command: project.cmd.jade
+        command: project.build.jade
       },
 
       markdown: {
         options: {
           stdout: true
         },
-        command: project.cmd.markdown
+        command: project.build.markdown
+      },
+
+      docs: {
+        options: {
+          stdout: true
+        },
+        command: project.docs.build
       }
     }
   });
 
-  grunt.registerTask('test', ['jshint', 'simplemocha', 'clean:test']);
-  grunt.registerTask('build', ['clean:examples', 'shell']);
-  grunt.registerTask('default', ['test']);
+  grunt.registerTask('test', [
+    'jshint',
+    'simplemocha',
+    'clean:test'
+  ]);
+
+  grunt.registerTask('build', [
+    'clean:examples',
+    'shell:html',
+    'shell:haml',
+    'shell:jade',
+    'shell:markdown'
+  ]);
+
+  grunt.registerTask('docs', [
+    'concat',
+    'shell:docs'
+  ]);
+
+  grunt.registerTask('default', [
+    'test'
+  ]);
 
 };

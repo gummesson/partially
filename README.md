@@ -1,5 +1,7 @@
 # Partially
 
+[![Build Status](https://travis-ci.org/gummesson/partially.png?branch=master)](https://travis-ci.org/gummesson/partially)
+
 *Partially* is a build tool for using [Hammer for Mac](http://hammerformac.com/)-like `@include`'s in your markup language of choice.
 
 ## Installation

@@ -1,4 +1,6 @@
 node_modules/
 test/tmp/
 test/fixtures/output/
+tmp/
+docs/
 npm-debug.log

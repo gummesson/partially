@@ -13,6 +13,7 @@ module.exports = function(grunt) {
 
       test: [
         'test/get-test.js',
+        'test/convert-test.js',
         'test/replace-test.js',
         'test/file-test.js',
         'test/partially-test.js'

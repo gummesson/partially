@@ -121,6 +121,17 @@ module.exports = function(grunt) {
         },
         command: project.docs.build
       }
+    },
+
+    copy: {
+      docs: {
+        files: [{
+          expand: true,
+          cwd:'docs/',
+          src: ['**'],
+          dest: '../docs/'
+        }]
+      }
     }
   });
 
@@ -140,7 +151,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('docs', [
     'concat',
-    'shell:docs'
+    'shell:docs',
+    'copy'
   ]);
 
   grunt.registerTask('default', [

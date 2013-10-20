@@ -37,7 +37,7 @@ describe('File', function() {
     file.read(path.file, function(err, data) {
       if (err) { throw err; }
       data.must.exist();
-      data.toString().must.be('Hello world!');
+      data.must.be('Hello world!');
       done();
     });
   });

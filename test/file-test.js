@@ -17,28 +17,34 @@ describe('File', function() {
     content: 'Hello world!'
   };
 
-  it('must create the directory', function(done) {
-    file.mkDir(path.output, function(err) {
-      if (err) { throw err; }
-      fsExists('test/tmp').must.be.true();
-      done();
+  describe('.mkDir()', function() {
+    it('must create the directory', function(done) {
+      file.mkDir(path.output, function(err) {
+        if (err) { throw err; }
+        fsExists('test/tmp').must.be.true();
+        done();
+      });
     });
   });
 
-  it('must save the file', function(done) {
-    file.save(path.file, test.content, function(err) {
-      if (err) { throw err; }
-      fsExists('test/tmp/test.txt').must.be.true();
-      done();
+  describe('.save()', function() {
+    it('must save the file', function(done) {
+      file.save(path.file, test.content, function(err) {
+        if (err) { throw err; }
+        fsExists('test/tmp/test.txt').must.be.true();
+        done();
+      });
     });
   });
 
-  it('must read the file', function(done) {
-    file.read(path.file, function(err, data) {
-      if (err) { throw err; }
-      data.must.exist();
-      data.must.be('Hello world!');
-      done();
+  describe('.read()', function() {
+    it('must read the file', function(done) {
+      file.read(path.file, function(err, data) {
+        if (err) { throw err; }
+        data.must.exist();
+        data.must.be('Hello world!');
+        done();
+      });
     });
   });
 });

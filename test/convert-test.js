@@ -12,13 +12,17 @@ describe('Convert', function() {
     lines: ['<body>', '<p>This is a test.</p>', '</body>']
   };
 
-  it('must convert the line into a string', function() {
-    var content = convert.line(test.line);
-    content.must.be('<!-- @include content.html -->');
+  describe('.line()', function() {
+    it('must convert the line into a string', function() {
+      var content = convert.line(test.line);
+      content.must.be('<!-- @include content.html -->');
+    });
   });
 
-  it('must convert the lines into a string with linebreaks', function() {
-    var content = convert.lines(test.lines);
-    content.must.be('<body>\n<p>This is a test.</p>\n</body>');
+  describe('.lines()', function() {
+    it('must convert the lines into a string with linebreaks', function() {
+      var content = convert.lines(test.lines);
+      content.must.be('<body>\n<p>This is a test.</p>\n</body>');
+    });
   });
 });

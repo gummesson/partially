@@ -12,8 +12,10 @@ describe('Replace', function() {
     partial: '<p>This is a test.</p>'
   };
 
-  it('must replace the tag with the partial', function() {
-    var content = replace.content(test.tag, test.partial);
-    content.must.be('<p>This is a test.</p>');
+  describe('.content()', function() {
+    it('must replace the tag with the partial', function() {
+      var content = replace.content(test.tag, test.partial);
+      content.must.be('<p>This is a test.</p>');
+    });
   });
 });

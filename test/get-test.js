@@ -21,33 +21,43 @@ describe('Get', function() {
     tag: '<!-- @include content.html -->'
   };
 
-  it('must get the path', function() {
-    var filepath = get.path(path.file),
-        realpath = join(process.cwd(), '/', 'template/index.html');
-    filepath.must.be(realpath);
+  describe('.path()', function() {
+    it('must get the path', function() {
+      var filepath = get.path(path.file),
+          realpath = join(process.cwd(), '/', 'template/index.html');
+      filepath.must.be(realpath);
+    });
   });
 
-  it('must get the filename', function() {
-    var filename = get.filename(path.file);
-    filename.must.be('index.html');
+  describe('.filename()', function() {
+    it('must get the filename', function() {
+      var filename = get.filename(path.file);
+      filename.must.be('index.html');
+    });
   });
 
-  it('must get all lines into an array', function() {
-    var lines = get.lines(test.lines);
-    lines.must.eql([
-      '<p>Test.</p>',
-      '<!-- @include content.html -->',
-      '<!-- Comment -->'
-    ]);
+  describe('.lines()', function() {
+    it('must get all lines into an array', function() {
+      var lines = get.lines(test.lines);
+      lines.must.eql([
+        '<p>Test.</p>',
+        '<!-- @include content.html -->',
+        '<!-- Comment -->'
+      ]);
+    });
   });
 
-  it('must get the partial tag', function() {
-    var tag = get.partialTag(test.lines);
-    tag.must.eql(['<!-- @include content.html -->']);
+  describe('.partialTag()', function() {
+    it('must get the partial tag', function() {
+      var tag = get.partialTag(test.lines);
+      tag.must.eql(['<!-- @include content.html -->']);
+    });
   });
 
-  it('must get the partial filename', function() {
-    var name = get.partialName(test.tag);
-    name.must.be('content.html');
+  describe('.partialName()', function() {
+    it('must get the partial filename', function() {
+      var name = get.partialName(test.tag);
+      name.must.be('content.html');
+    });
   });
 });

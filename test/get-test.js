@@ -34,7 +34,6 @@ describe('Get', function() {
 
   it('must get all lines into an array', function() {
     var lines = get.lines(test.lines);
-    lines.must.be.an.array();
     lines.must.eql([
       '<p>Test.</p>',
       '<!-- @include content.html -->',
@@ -44,7 +43,6 @@ describe('Get', function() {
 
   it('must get the partial tag', function() {
     var tag = get.partialTag(test.lines);
-    tag.must.be.an.array();
     tag.must.eql(['<!-- @include content.html -->']);
   });
 

@@ -48,10 +48,10 @@ describe('Partially', function() {
   });
 
   it('must generate all of the content in the output file', function(done) {
-    fs.readFile(path.outputFile, function(err, data) {
+    fs.readFile(path.outputFile, {encoding: 'utf8'}, function(err, data) {
       if (err) { throw err; }
       data.must.exist();
-      data.toString().must.be(test.content);
+      data.must.be(test.content);
       done();
     });
   });

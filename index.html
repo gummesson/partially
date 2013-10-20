@@ -54,8 +54,7 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-<span class="keyword">var</span> path    = require(<span class="string">'path'</span>),
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> path    = require(<span class="string">'path'</span>),
     Convert = require(<span class="string">'./utils/convert'</span>),
     convert = <span class="keyword">new</span> Convert(),
     Get     = require(<span class="string">'./utils/get'</span>),
@@ -78,6 +77,11 @@
 <p>Creates the paths to the template file, the “partials” directory and
 the “output” directory by assigning and converting the values from
 the <code>file</code>, <code>partials</code> and <code>output</code>.</p>
+<ul>
+<li><code>file</code>     represents a string.</li>
+<li><code>partials</code> represents a string.</li>
+<li><code>ouput</code>    represents a string.</li>
+</ul>
 
             </div>
             
@@ -100,6 +104,9 @@ the <code>file</code>, <code>partials</code> and <code>output</code>.</p>
 <p>Runs through the parsing of the template, the parsing of the content,
 saves the outpute file and returns the full path of the filename when
 everything&#39;s been executed.</p>
+<ul>
+<li><code>done</code> represents a function.</li>
+</ul>
 
             </div>
             
@@ -127,6 +134,9 @@ everything&#39;s been executed.</p>
 <p>Runs through the parsing of the template and the parsing of the content
 and returns full path to the output file and the parsed content when
 everything&#39;s been executed.</p>
+<ul>
+<li><code>done</code> represents a function.</li>
+</ul>
 
             </div>
             
@@ -153,6 +163,9 @@ everything&#39;s been executed.</p>
               <h3>Template</h3>
 <p>Returns the output file&#39;s path and all of the lines in the template file
 by parsing its filename and content.</p>
+<ul>
+<li><code>callback</code> represents a function.</li>
+</ul>
 
             </div>
             
@@ -178,6 +191,10 @@ by parsing its filename and content.</p>
               <h4>Template name</h4>
 <p>Returns the full path of the soon-to-be compiled output file
 by converting the <code>file</code>.</p>
+<ul>
+<li><code>file</code>     represents a string.</li>
+<li><code>callback</code> represents a function.</li>
+</ul>
 
             </div>
             
@@ -199,6 +216,10 @@ by converting the <code>file</code>.</p>
               <h3>Content</h3>
 <p>Returns the content by looping through the <code>lines</code> and replacing all of
 the <code>@include</code> expressions with the content of the partials.</p>
+<ul>
+<li><code>lines</code>    represents an array.</li>
+<li><code>callback</code> represents a function.</li>
+</ul>
 
             </div>
             
@@ -229,7 +250,11 @@ the <code>@include</code> expressions with the content of the partials.</p>
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <h4>Tag</h4>
-<p>Returns whether or not the <code>line</code> matches the <code>@include</code> expression.</p>
+<p>Returns whether or not the <code>line</code> matches the <code>@include</code> pattern.</p>
+<ul>
+<li><code>line</code>     represents a string.</li>
+<li><code>callback</code> represents a function.</li>
+</ul>
 
             </div>
             
@@ -249,6 +274,10 @@ the <code>@include</code> expressions with the content of the partials.</p>
               </div>
               <h4>Partial</h4>
 <p>Returns the actual content of the partial file.</p>
+<ul>
+<li><code>tag</code>      represents a string.</li>
+<li><code>callback</code> represents a function.</li>
+</ul>
 
             </div>
             
@@ -273,6 +302,10 @@ the <code>@include</code> expressions with the content of the partials.</p>
               </div>
               <h5>Partial name</h5>
 <p>Returns the full path of the partial by converting the <code>tag</code>.</p>
+<ul>
+<li><code>tag</code>      represents a string.</li>
+<li><code>callback</code> represents a function.</li>
+</ul>
 
             </div>
             
@@ -293,6 +326,11 @@ the <code>@include</code> expressions with the content of the partials.</p>
               </div>
               <h3>Output</h3>
 <p>Returns the filename and saves the output file with the <code>content</code>.</p>
+<ul>
+<li><code>filename</code> represents a string.</li>
+<li><code>content</code>  represents a string.</li>
+<li><code>callback</code> represents a function.</li>
+</ul>
 
             </div>
             
@@ -330,6 +368,11 @@ the <code>@include</code> expressions with the content of the partials.</p>
               </div>
               <p>Returns a new <code>Partially</code> instance with the given <code>file</code>, <code>partials</code>
 and <code>output</code>.</p>
+<ul>
+<li><code>file</code>     represents a string.</li>
+<li><code>partials</code> represents a string.</li>
+<li><code>output</code>   represents a string.</li>
+</ul>
 
             </div>
             
@@ -392,8 +435,7 @@ and <code>output</code>.</p>
                 <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <h4>Tag</h4>
-<p>The regular expression for the <code>@include</code> rule, ie:
-<code>&lt;!-- @include partial.ext --&gt;</code>.</p>
+<p>Defines the regular expression for the <code>@include</code> pattern, ie:<br><code>&lt;!-- @include partial.ext --&gt;</code>.</p>
 
             </div>
             
@@ -410,6 +452,9 @@ and <code>output</code>.</p>
               </div>
               <h4>Path</h4>
 <p>Returns the full path of <code>filename</code>.</p>
+<ul>
+<li><code>filename</code> represents a string.</li>
+</ul>
 
             </div>
             
@@ -427,8 +472,10 @@ and <code>output</code>.</p>
                 <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <h4>Filename</h4>
-<p>Returns the base filename of the <code>filename</code>, ie:
-<code>index.html</code>.</p>
+<p>Returns the base filename of the <code>filename</code>, ie:<br><code>index.html</code>.</p>
+<ul>
+<li><code>filename</code> represents a string.</li>
+</ul>
 
             </div>
             
@@ -447,6 +494,9 @@ and <code>output</code>.</p>
               </div>
               <h4>Lines</h4>
 <p>Returns an array of the <code>content</code> with normalized line breaks.</p>
+<ul>
+<li><code>content</code> represents a string.</li>
+</ul>
 
             </div>
             
@@ -464,7 +514,10 @@ and <code>output</code>.</p>
                 <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <h4>Partial tag</h4>
-<p>Returns whether or not the <code>content</code> matches the <code>@include</code> expression.</p>
+<p>Returns whether or not the <code>content</code> matches the <code>@include</code> pattern.</p>
+<ul>
+<li><code>content</code> represents a string.</li>
+</ul>
 
             </div>
             
@@ -482,7 +535,10 @@ and <code>output</code>.</p>
                 <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <h4>Partial name</h4>
-<p>Returns the filename of the <code>@include</code> expression in the <code>content</code></p>
+<p>Returns the filename of the <code>@include</code> pattern in the <code>content</code>, ie:<br><code>partial.html</code>.</p>
+<ul>
+<li><code>content</code> represents a string.</li>
+</ul>
 
             </div>
             
@@ -533,8 +589,7 @@ and <code>output</code>.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-<span class="keyword">var</span> Convert = <span class="keyword">function</span>() {};</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> Convert = <span class="keyword">function</span>() {};</pre></div></div>
             
         </li>
         
@@ -547,6 +602,9 @@ and <code>output</code>.</p>
               </div>
               <h4>Line</h4>
 <p>Returns the <code>line</code> as a string.</p>
+<ul>
+<li><code>line</code> represents an array.</li>
+</ul>
 
             </div>
             
@@ -565,6 +623,9 @@ and <code>output</code>.</p>
               </div>
               <h4>Lines</h4>
 <p>Returns the <code>lines</code> as a string with linebreaks.</p>
+<ul>
+<li><code>lines</code> represents an array.</li>
+</ul>
 
             </div>
             
@@ -628,8 +689,12 @@ and <code>output</code>.</p>
               </div>
               <h4>Content</h4>
 <p>Removes extraneous whitespace and returns the <code>content</code> with 
-the <code>@include</code> expression replaced with the actual content of 
+the <code>@include</code> pattern replaced with the actual markup content of 
 the partial file.</p>
+<ul>
+<li><code>content</code>     represents a string.</li>
+<li><code>replacement</code> represents a string.</li>
+</ul>
 
             </div>
             
@@ -709,6 +774,10 @@ the partial file.</p>
               </div>
               <h4>Read</h4>
 <p>Reads the <code>file</code> (synchronously) and returns the data.</p>
+<ul>
+<li><code>file</code>     represents a string.</li>
+<li><code>callback</code> represents a function.</li>
+</ul>
 
             </div>
             
@@ -732,6 +801,11 @@ the partial file.</p>
               </div>
               <h4>Save</h4>
 <p>Saves the <code>file</code> and <code>content</code> (synchronously).</p>
+<ul>
+<li><code>file</code>     represents a string.</li>
+<li><code>content</code>  represents a string.</li>
+<li><code>callback</code> represents a function.</li>
+</ul>
 
             </div>
             
@@ -755,6 +829,10 @@ the partial file.</p>
               </div>
               <h4>Make directory</h4>
 <p>Creates the <code>path</code> (synchronously).</p>
+<ul>
+<li><code>path</code>     represents a string.</li>
+<li><code>callback</code> represents a function.</li>
+</ul>
 
             </div>
             

@@ -23,7 +23,10 @@
               </div>
               <h1>Partially</h1>
 <p>Use partials in your markup.</p>
-<p><strong>License</strong>: MIT<br><strong>Source</strong>: <a href="https://github.com/gummesson/partially">Github</a></p>
+<p><strong>Partially</strong> is a build tool for using 
+<a href="http://hammerformac.com/">Hammer for Mac</a>-like 
+<code>@include</code>&#39;s in your markup language of choice.</p>
+<p><strong>License</strong>: MIT<br><strong>Source</strong>: <a href="https://github.com/gummesson/partially">GitHub</a></p>
 
             </div>
             
@@ -74,7 +77,7 @@
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <h3>Initialization</h3>
-<p>Creates the paths to the template file, the “partials” directory and
+<p>Create the paths to the template file, the “partials” directory and
 the “output” directory by assigning and converting the values from
 the <code>file</code>, <code>partials</code> and <code>output</code>.</p>
 <ul>
@@ -101,8 +104,8 @@ the <code>file</code>, <code>partials</code> and <code>output</code>.</p>
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <h4>Compile</h4>
-<p>Runs through the parsing of the template, the parsing of the content,
-saves the outpute file and returns the full path of the filename when
+<p>Run through the parsing of the template, the parsing of the content,
+saves the outpute file and return the full path of the filename when
 everything&#39;s been executed.</p>
 <ul>
 <li><code>done</code> represents a function.</li>
@@ -131,8 +134,8 @@ everything&#39;s been executed.</p>
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <h4>Render</h4>
-<p>Runs through the parsing of the template and the parsing of the content
-and returns full path to the output file and the parsed content when
+<p>Run through the parsing of the template and the parsing of the content
+and return full path to the output file and the parsed content when
 everything&#39;s been executed.</p>
 <ul>
 <li><code>done</code> represents a function.</li>
@@ -161,7 +164,7 @@ everything&#39;s been executed.</p>
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <h3>Template</h3>
-<p>Returns the output file&#39;s path and all of the lines in the template file
+<p>Return the output file&#39;s path and all of the lines in the template file
 by parsing its filename and content.</p>
 <ul>
 <li><code>callback</code> represents a function.</li>
@@ -189,7 +192,7 @@ by parsing its filename and content.</p>
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <h4>Template name</h4>
-<p>Returns the full path of the soon-to-be compiled output file
+<p>Return the full path of the soon-to-be compiled output file
 by converting the <code>file</code>.</p>
 <ul>
 <li><code>file</code>     represents a string.</li>
@@ -214,8 +217,8 @@ by converting the <code>file</code>.</p>
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <h3>Content</h3>
-<p>Returns the content by looping through the <code>lines</code> and replacing all of
-the <code>@include</code> expressions with the content of the partials.</p>
+<p>Return the content by looping through the <code>lines</code> and replacing all of
+the <code>@include</code> patterns with the content of the partials.</p>
 <ul>
 <li><code>lines</code>    represents an array.</li>
 <li><code>callback</code> represents a function.</li>
@@ -250,7 +253,7 @@ the <code>@include</code> expressions with the content of the partials.</p>
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <h4>Tag</h4>
-<p>Returns whether or not the <code>line</code> matches the <code>@include</code> pattern.</p>
+<p>Return whether or not the <code>line</code> matches the <code>@include</code> pattern.</p>
 <ul>
 <li><code>line</code>     represents a string.</li>
 <li><code>callback</code> represents a function.</li>
@@ -273,7 +276,7 @@ the <code>@include</code> expressions with the content of the partials.</p>
                 <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <h4>Partial</h4>
-<p>Returns the actual content of the partial file.</p>
+<p>Return the actual content of the partial file.</p>
 <ul>
 <li><code>tag</code>      represents a string.</li>
 <li><code>callback</code> represents a function.</li>
@@ -301,7 +304,7 @@ the <code>@include</code> expressions with the content of the partials.</p>
                 <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <h5>Partial name</h5>
-<p>Returns the full path of the partial by converting the <code>tag</code>.</p>
+<p>Return the full path of the partial by converting the <code>tag</code>.</p>
 <ul>
 <li><code>tag</code>      represents a string.</li>
 <li><code>callback</code> represents a function.</li>
@@ -325,7 +328,7 @@ the <code>@include</code> expressions with the content of the partials.</p>
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <h3>Output</h3>
-<p>Returns the filename and saves the output file with the <code>content</code>.</p>
+<p>Return the filename and saves the output file with the <code>content</code>.</p>
 <ul>
 <li><code>filename</code> represents a string.</li>
 <li><code>content</code>  represents a string.</li>
@@ -366,8 +369,8 @@ the <code>@include</code> expressions with the content of the partials.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
-              <p>Returns a new <code>Partially</code> instance with the given <code>file</code>, <code>partials</code>
-and <code>output</code>.</p>
+              <p>Return a new <code>Partially</code> instance with the given <code>file</code>, <code>partials</code>
+and <code>output</code> paths.</p>
 <ul>
 <li><code>file</code>     represents a string.</li>
 <li><code>partials</code> represents a string.</li>
@@ -419,7 +422,7 @@ and <code>output</code>.</p>
                 <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <h3>Get</h3>
-<p>Defines the namespace.</p>
+<p>The namespace.</p>
 
             </div>
             
@@ -435,7 +438,7 @@ and <code>output</code>.</p>
                 <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <h4>Tag</h4>
-<p>Defines the regular expression for the <code>@include</code> pattern, ie:<br><code>&lt;!-- @include partial.ext --&gt;</code>.</p>
+<p>The regular expression for the <code>@include</code> pattern, ie:<br><code>&lt;!-- @include partial.ext --&gt;</code>.</p>
 
             </div>
             
@@ -451,7 +454,7 @@ and <code>output</code>.</p>
                 <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <h4>Path</h4>
-<p>Returns the full path of <code>filename</code>.</p>
+<p>Return the full path of <code>filename</code>.</p>
 <ul>
 <li><code>filename</code> represents a string.</li>
 </ul>
@@ -472,7 +475,7 @@ and <code>output</code>.</p>
                 <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <h4>Filename</h4>
-<p>Returns the base filename of the <code>filename</code>, ie:<br><code>index.html</code>.</p>
+<p>Return the base filename of the <code>filename</code>, ie:<br><code>index.html</code>.</p>
 <ul>
 <li><code>filename</code> represents a string.</li>
 </ul>
@@ -493,7 +496,7 @@ and <code>output</code>.</p>
                 <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <h4>Lines</h4>
-<p>Returns an array of the <code>content</code> with normalized line breaks.</p>
+<p>Return an array of the <code>content</code> with normalized line breaks.</p>
 <ul>
 <li><code>content</code> represents a string.</li>
 </ul>
@@ -514,7 +517,7 @@ and <code>output</code>.</p>
                 <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <h4>Partial tag</h4>
-<p>Returns whether or not the <code>content</code> matches the <code>@include</code> pattern.</p>
+<p>Return whether or not the <code>content</code> matches the <code>@include</code> pattern.</p>
 <ul>
 <li><code>content</code> represents a string.</li>
 </ul>
@@ -535,7 +538,7 @@ and <code>output</code>.</p>
                 <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <h4>Partial name</h4>
-<p>Returns the filename of the <code>@include</code> pattern in the <code>content</code>, ie:<br><code>partial.html</code>.</p>
+<p>Return the filename of the <code>@include</code> pattern in the <code>content</code>, ie:<br><code>partial.html</code>.</p>
 <ul>
 <li><code>content</code> represents a string.</li>
 </ul>
@@ -585,7 +588,7 @@ and <code>output</code>.</p>
                 <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <h3>Convert</h3>
-<p>Defines the namespace.</p>
+<p>Define the namespace.</p>
 
             </div>
             
@@ -601,7 +604,7 @@ and <code>output</code>.</p>
                 <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <h4>Line</h4>
-<p>Returns the <code>line</code> as a string.</p>
+<p>Return the <code>line</code> as a string.</p>
 <ul>
 <li><code>line</code> represents an array.</li>
 </ul>
@@ -622,7 +625,7 @@ and <code>output</code>.</p>
                 <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <h4>Lines</h4>
-<p>Returns the <code>lines</code> as a string with linebreaks.</p>
+<p>Return the <code>lines</code> as a string with linebreaks.</p>
 <ul>
 <li><code>lines</code> represents an array.</li>
 </ul>
@@ -672,7 +675,7 @@ and <code>output</code>.</p>
                 <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <h3>Replace</h3>
-<p>Defines the namespace.</p>
+<p>The namespace.</p>
 
             </div>
             
@@ -688,7 +691,7 @@ and <code>output</code>.</p>
                 <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <h4>Content</h4>
-<p>Removes extraneous whitespace and returns the <code>content</code> with 
+<p>Remove extraneous whitespace and return the <code>content</code> with 
 the <code>@include</code> pattern replaced with the actual markup content of 
 the partial file.</p>
 <ul>
@@ -757,7 +760,7 @@ the partial file.</p>
                 <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
               <h3>File</h3>
-<p>Defines the namespace.</p>
+<p>Define the namespace.</p>
 
             </div>
             
@@ -773,7 +776,7 @@ the partial file.</p>
                 <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
               <h4>Read</h4>
-<p>Reads the <code>file</code> (synchronously) and returns the data.</p>
+<p>Read the <code>file</code> (synchronously) and returns the data.</p>
 <ul>
 <li><code>file</code>     represents a string.</li>
 <li><code>callback</code> represents a function.</li>
@@ -800,7 +803,7 @@ the partial file.</p>
                 <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
               <h4>Save</h4>
-<p>Saves the <code>file</code> and <code>content</code> (synchronously).</p>
+<p>Save the <code>file</code> and <code>content</code> (synchronously).</p>
 <ul>
 <li><code>file</code>     represents a string.</li>
 <li><code>content</code>  represents a string.</li>
@@ -828,7 +831,7 @@ the partial file.</p>
                 <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
               <h4>Make directory</h4>
-<p>Creates the <code>path</code> (synchronously).</p>
+<p>Create the <code>path</code> (synchronously).</p>
 <ul>
 <li><code>path</code>     represents a string.</li>
 <li><code>callback</code> represents a function.</li>

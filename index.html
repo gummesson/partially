@@ -76,14 +76,14 @@
               <div class="pilwrap for-h3">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <h3>Initialization</h3>
+              <h3>Partially</h3>
 <p>Create the paths to the template file, the “partials” directory and
 the “output” directory by assigning and converting the values from
 the <code>file</code>, <code>partials</code> and <code>output</code>.</p>
 <ul>
-<li><code>file</code>     represents a string.</li>
-<li><code>partials</code> represents a string.</li>
-<li><code>ouput</code>    represents a string.</li>
+<li><code>file</code>     is a string.</li>
+<li><code>partials</code> is a string.</li>
+<li><code>ouput</code>    is a string.</li>
 </ul>
 
             </div>
@@ -103,12 +103,12 @@ the <code>file</code>, <code>partials</code> and <code>output</code>.</p>
               <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <h4>Compile</h4>
+              <h4>Partially.prototype.compile</h4>
 <p>Run through the parsing of the template, the parsing of the content,
 saves the outpute file and return the full path of the filename when
 everything&#39;s been executed.</p>
 <ul>
-<li><code>done</code> represents a function.</li>
+<li><code>done</code> is a function.</li>
 </ul>
 
             </div>
@@ -133,12 +133,12 @@ everything&#39;s been executed.</p>
               <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <h4>Render</h4>
+              <h4>Partially.prototype.render</h4>
 <p>Run through the parsing of the template and the parsing of the content
 and return full path to the output file and the parsed content when
 everything&#39;s been executed.</p>
 <ul>
-<li><code>done</code> represents a function.</li>
+<li><code>done</code> is a function.</li>
 </ul>
 
             </div>
@@ -160,14 +160,14 @@ everything&#39;s been executed.</p>
         <li id="section-7">
             <div class="annotation">
               
-              <div class="pilwrap for-h3">
+              <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <h3>Template</h3>
+              <h4>Partially.prototype.parseTemplate</h4>
 <p>Return the output file&#39;s path and all of the lines in the template file
 by parsing its filename and content.</p>
 <ul>
-<li><code>callback</code> represents a function.</li>
+<li><code>callback</code> is a function.</li>
 </ul>
 
             </div>
@@ -191,12 +191,12 @@ by parsing its filename and content.</p>
               <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
-              <h4>Template name</h4>
+              <h4>Partially.prototype.parseTemplateName</h4>
 <p>Return the full path of the soon-to-be compiled output file
 by converting the <code>file</code>.</p>
 <ul>
-<li><code>file</code>     represents a string.</li>
-<li><code>callback</code> represents a function.</li>
+<li><code>file</code>     is a string.</li>
+<li><code>callback</code> is a function.</li>
 </ul>
 
             </div>
@@ -213,15 +213,15 @@ by converting the <code>file</code>.</p>
         <li id="section-9">
             <div class="annotation">
               
-              <div class="pilwrap for-h3">
+              <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
-              <h3>Content</h3>
+              <h4>Partially.prototype.parseContent</h4>
 <p>Return the content by looping through the <code>lines</code> and replacing all of
 the <code>@include</code> patterns with the content of the partials.</p>
 <ul>
-<li><code>lines</code>    represents an array.</li>
-<li><code>callback</code> represents a function.</li>
+<li><code>lines</code>    is an array.</li>
+<li><code>callback</code> is a function.</li>
 </ul>
 
             </div>
@@ -252,11 +252,11 @@ the <code>@include</code> patterns with the content of the partials.</p>
               <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
-              <h4>Tag</h4>
+              <h4>Partially.prototype.parseTag</h4>
 <p>Return whether or not the <code>line</code> matches the <code>@include</code> pattern.</p>
 <ul>
-<li><code>line</code>     represents a string.</li>
-<li><code>callback</code> represents a function.</li>
+<li><code>line</code>     is a string.</li>
+<li><code>callback</code> is a function.</li>
 </ul>
 
             </div>
@@ -275,11 +275,11 @@ the <code>@include</code> patterns with the content of the partials.</p>
               <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
-              <h4>Partial</h4>
+              <h4>Partially.prototype.parsePartial</h4>
 <p>Return the actual content of the partial file.</p>
 <ul>
-<li><code>tag</code>      represents a string.</li>
-<li><code>callback</code> represents a function.</li>
+<li><code>tag</code>      is a string.</li>
+<li><code>callback</code> is a function.</li>
 </ul>
 
             </div>
@@ -300,14 +300,14 @@ the <code>@include</code> patterns with the content of the partials.</p>
         <li id="section-12">
             <div class="annotation">
               
-              <div class="pilwrap for-h5">
+              <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
-              <h5>Partial name</h5>
+              <h4>Partially.prototype.parsePartialName</h4>
 <p>Return the full path of the partial by converting the <code>tag</code>.</p>
 <ul>
-<li><code>tag</code>      represents a string.</li>
-<li><code>callback</code> represents a function.</li>
+<li><code>tag</code>      is a string.</li>
+<li><code>callback</code> is a function.</li>
 </ul>
 
             </div>
@@ -324,15 +324,15 @@ the <code>@include</code> patterns with the content of the partials.</p>
         <li id="section-13">
             <div class="annotation">
               
-              <div class="pilwrap for-h3">
+              <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
-              <h3>Output</h3>
+              <h4>Partially.prototype.saveOutput</h4>
 <p>Return the filename and saves the output file with the <code>content</code>.</p>
 <ul>
-<li><code>filename</code> represents a string.</li>
-<li><code>content</code>  represents a string.</li>
-<li><code>callback</code> represents a function.</li>
+<li><code>filename</code> is a string.</li>
+<li><code>content</code>  is a string.</li>
+<li><code>callback</code> is a function.</li>
 </ul>
 
             </div>
@@ -372,9 +372,9 @@ the <code>@include</code> patterns with the content of the partials.</p>
               <p>Return a new <code>Partially</code> instance with the given <code>file</code>, <code>partials</code>
 and <code>output</code> paths.</p>
 <ul>
-<li><code>file</code>     represents a string.</li>
-<li><code>partials</code> represents a string.</li>
-<li><code>output</code>   represents a string.</li>
+<li><code>file</code>     is a string.</li>
+<li><code>partials</code> is a string.</li>
+<li><code>output</code>   is a string.</li>
 </ul>
 
             </div>
@@ -453,10 +453,10 @@ and <code>output</code> paths.</p>
               <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
-              <h4>Path</h4>
+              <h4>Get.prototype.path</h4>
 <p>Return the full path of <code>filename</code>.</p>
 <ul>
-<li><code>filename</code> represents a string.</li>
+<li><code>filename</code> is a string.</li>
 </ul>
 
             </div>
@@ -474,10 +474,10 @@ and <code>output</code> paths.</p>
               <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
-              <h4>Filename</h4>
+              <h4>Get.prototype.filename</h4>
 <p>Return the base filename of the <code>filename</code>, ie:<br><code>index.html</code>.</p>
 <ul>
-<li><code>filename</code> represents a string.</li>
+<li><code>filename</code> is a string.</li>
 </ul>
 
             </div>
@@ -495,10 +495,10 @@ and <code>output</code> paths.</p>
               <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
-              <h4>Lines</h4>
+              <h4>Get.prototype.lines</h4>
 <p>Return an array of the <code>content</code> with normalized line breaks.</p>
 <ul>
-<li><code>content</code> represents a string.</li>
+<li><code>content</code> is a string.</li>
 </ul>
 
             </div>
@@ -516,10 +516,10 @@ and <code>output</code> paths.</p>
               <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
-              <h4>Partial tag</h4>
+              <h4>Get.prototype.partialTag</h4>
 <p>Return whether or not the <code>content</code> matches the <code>@include</code> pattern.</p>
 <ul>
-<li><code>content</code> represents a string.</li>
+<li><code>content</code> is a string.</li>
 </ul>
 
             </div>
@@ -537,10 +537,10 @@ and <code>output</code> paths.</p>
               <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
-              <h4>Partial name</h4>
+              <h4>Get.prototype.partialName</h4>
 <p>Return the filename of the <code>@include</code> pattern in the <code>content</code>, ie:<br><code>partial.html</code>.</p>
 <ul>
-<li><code>content</code> represents a string.</li>
+<li><code>content</code> is a string.</li>
 </ul>
 
             </div>
@@ -603,10 +603,10 @@ and <code>output</code> paths.</p>
               <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
-              <h4>Line</h4>
+              <h4>Convert.prototype.line</h4>
 <p>Return the <code>line</code> as a string.</p>
 <ul>
-<li><code>line</code> represents an array.</li>
+<li><code>line</code> is an array.</li>
 </ul>
 
             </div>
@@ -624,10 +624,10 @@ and <code>output</code> paths.</p>
               <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
-              <h4>Lines</h4>
+              <h4>Convert.prototype.lines</h4>
 <p>Return the <code>lines</code> as a string with linebreaks.</p>
 <ul>
-<li><code>lines</code> represents an array.</li>
+<li><code>lines</code> is an array.</li>
 </ul>
 
             </div>
@@ -690,13 +690,13 @@ and <code>output</code> paths.</p>
               <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
-              <h4>Content</h4>
+              <h4>Replace.prototype.content</h4>
 <p>Remove extraneous whitespace and return the <code>content</code> with 
 the <code>@include</code> pattern replaced with the actual markup content of 
 the partial file.</p>
 <ul>
-<li><code>content</code>     represents a string.</li>
-<li><code>replacement</code> represents a string.</li>
+<li><code>content</code>     is a string.</li>
+<li><code>replacement</code> is a string.</li>
 </ul>
 
             </div>
@@ -775,11 +775,11 @@ the partial file.</p>
               <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
-              <h4>Read</h4>
+              <h4>File.prototype.read</h4>
 <p>Read the <code>file</code> (synchronously) and returns the data.</p>
 <ul>
-<li><code>file</code>     represents a string.</li>
-<li><code>callback</code> represents a function.</li>
+<li><code>file</code>     is a string.</li>
+<li><code>callback</code> is a function.</li>
 </ul>
 
             </div>
@@ -802,12 +802,12 @@ the partial file.</p>
               <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
-              <h4>Save</h4>
+              <h4>File.prototype.save</h4>
 <p>Save the <code>file</code> and <code>content</code> (synchronously).</p>
 <ul>
-<li><code>file</code>     represents a string.</li>
-<li><code>content</code>  represents a string.</li>
-<li><code>callback</code> represents a function.</li>
+<li><code>file</code>     is a string.</li>
+<li><code>content</code>  is a string.</li>
+<li><code>callback</code> is a function.</li>
 </ul>
 
             </div>
@@ -830,11 +830,11 @@ the partial file.</p>
               <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
-              <h4>Make directory</h4>
+              <h4>File.prototype.mkDir</h4>
 <p>Create the <code>path</code> (synchronously).</p>
 <ul>
-<li><code>path</code>     represents a string.</li>
-<li><code>callback</code> represents a function.</li>
+<li><code>path</code>     is a string.</li>
+<li><code>callback</code> is a function.</li>
 </ul>
 
             </div>

@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Partially</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h1">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1>Partially</h1>
+<p>Use partials in your markup.</p>
+<p><strong>Partially</strong> is a build tool for using 
+<a href="http://hammerformac.com/">Hammer for Mac</a>-like 
+<code>@include</code>&#39;s in your markup language of choice.</p>
+<p><strong>License</strong>: MIT<br><strong>Source</strong>: <a href="https://github.com/gummesson/partially">GitHub</a></p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <h2>partially.js</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h3>Modules</h3>
+<p>Import the required modules.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> path    = require(<span class="string">'path'</span>),
+    Convert = require(<span class="string">'./utils/convert'</span>),
+    convert = <span class="keyword">new</span> Convert(),
+    Get     = require(<span class="string">'./utils/get'</span>),
+    get     = <span class="keyword">new</span> Get(),
+    File    = require(<span class="string">'./utils/file'</span>),
+    file    = <span class="keyword">new</span> File(),
+    Replace = require(<span class="string">'./utils/replace'</span>),
+    replace = <span class="keyword">new</span> Replace();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h3>Partially</h3>
+<p>Create the paths to the template file, the “partials” directory and
+the “output” directory by assigning and converting the values from
+the <code>file</code>, <code>partials</code> and <code>output</code>.</p>
+<ul>
+<li><code>file</code>     is a string.</li>
+<li><code>partials</code> is a string.</li>
+<li><code>ouput</code>    is a string.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> Partially = <span class="keyword">function</span>(file, partials, output) {
+  <span class="keyword">this</span>.templateFile = get.path(file || <span class="string">'template/index.html'</span>);
+  <span class="keyword">this</span>.partialsDir  = get.path(partials || <span class="string">'partials'</span>);
+  <span class="keyword">this</span>.outputDir    = get.path(output || <span class="string">'output'</span>);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <h4>Partially.prototype.compile</h4>
+<p>Run through the parsing of the template, the parsing of the content,
+saves the outpute file and return the full path of the filename when
+everything&#39;s been executed.</p>
+<ul>
+<li><code>done</code> is a function.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Partially.prototype.compile = <span class="keyword">function</span>(done) {
+  done = done || <span class="keyword">function</span>() {};
+  <span class="keyword">this</span>.render(<span class="keyword">function</span>(err, filename, content) {
+    <span class="keyword">if</span> (err) { <span class="keyword">return</span> done(err); }
+    <span class="keyword">this</span>.saveOutput(filename, content, <span class="keyword">function</span>(err, filename) {
+      <span class="keyword">if</span> (err) { <span class="keyword">return</span> done(err); }
+      <span class="keyword">return</span> done(<span class="literal">null</span>, filename);
+    });
+  }.bind(<span class="keyword">this</span>));
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <h4>Partially.prototype.render</h4>
+<p>Run through the parsing of the template and the parsing of the content
+and return full path to the output file and the parsed content when
+everything&#39;s been executed.</p>
+<ul>
+<li><code>done</code> is a function.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Partially.prototype.render = <span class="keyword">function</span>(done) {
+  done = done || <span class="keyword">function</span>() {};
+  <span class="keyword">this</span>.parseTemplate(<span class="keyword">function</span>(err, filename, lines) {
+    <span class="keyword">if</span> (err) { <span class="keyword">return</span> done(err); }
+    <span class="keyword">this</span>.parseContent(lines, <span class="keyword">function</span>(err, content) {
+      <span class="keyword">if</span> (err) { <span class="keyword">return</span> done(err); }
+      <span class="keyword">return</span> done(<span class="literal">null</span>, filename, content);
+    });
+  }.bind(<span class="keyword">this</span>));
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <h4>Partially.prototype.parseTemplate</h4>
+<p>Return the output file&#39;s path and all of the lines in the template file
+by parsing its filename and content.</p>
+<ul>
+<li><code>callback</code> is a function.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Partially.prototype.parseTemplate = <span class="keyword">function</span>(callback) {
+  file.read(<span class="keyword">this</span>.templateFile, <span class="keyword">function</span>(err, data) {
+    <span class="keyword">if</span> (err) { <span class="keyword">return</span> callback(err); }
+    <span class="keyword">var</span> lines = get.lines(data);
+    <span class="keyword">this</span>.parseTemplateName(<span class="keyword">this</span>.templateFile, <span class="keyword">function</span>(filename) {
+      <span class="keyword">return</span> callback(<span class="literal">null</span>, filename, lines);
+    });
+  }.bind(<span class="keyword">this</span>));
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <h4>Partially.prototype.parseTemplateName</h4>
+<p>Return the full path of the soon-to-be compiled output file
+by converting the <code>file</code>.</p>
+<ul>
+<li><code>file</code>     is a string.</li>
+<li><code>callback</code> is a function.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Partially.prototype.parseTemplateName = <span class="keyword">function</span>(file, callback) {
+   <span class="keyword">var</span> basename = get.filename(file),
+       filename = path.join(<span class="keyword">this</span>.outputDir, <span class="string">'/'</span>, basename);
+   <span class="keyword">return</span> callback(filename);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <h4>Partially.prototype.parseContent</h4>
+<p>Return the content by looping through the <code>lines</code> and replacing all of
+the <code>@include</code> patterns with the content of the partials.</p>
+<ul>
+<li><code>lines</code>    is an array.</li>
+<li><code>callback</code> is a function.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Partially.prototype.parseContent = <span class="keyword">function</span>(lines, callback) {
+  <span class="keyword">var</span> content = [];
+  lines.forEach(<span class="keyword">function</span>(line) {
+    <span class="keyword">this</span>.parseTag(line, <span class="keyword">function</span>(tag) {
+      <span class="keyword">if</span> (tag) {
+        <span class="keyword">this</span>.parsePartial(convert.line(tag), <span class="keyword">function</span>(err, partial) {
+          <span class="keyword">if</span> (err) { <span class="keyword">return</span> callback(err); }
+          content.push(partial);
+        });
+       } <span class="keyword">else</span> {
+         content.push(line);
+       }
+    }.bind(<span class="keyword">this</span>));
+  }.bind(<span class="keyword">this</span>));
+  <span class="keyword">return</span> callback(<span class="literal">null</span>, convert.lines(content));
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <h4>Partially.prototype.parseTag</h4>
+<p>Return whether or not the <code>line</code> matches the <code>@include</code> pattern.</p>
+<ul>
+<li><code>line</code>     is a string.</li>
+<li><code>callback</code> is a function.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Partially.prototype.parseTag = <span class="keyword">function</span>(line, callback) {
+  <span class="keyword">var</span> tag = get.partialTag(line);
+  <span class="keyword">return</span> callback(tag);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <h4>Partially.prototype.parsePartial</h4>
+<p>Return the actual content of the partial file.</p>
+<ul>
+<li><code>tag</code>      is a string.</li>
+<li><code>callback</code> is a function.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Partially.prototype.parsePartial = <span class="keyword">function</span>(tag, callback) {
+  <span class="keyword">this</span>.parsePartialName(tag, <span class="keyword">function</span>(filename) {
+    file.read(filename, <span class="keyword">function</span>(err, data) {
+      <span class="keyword">if</span> (err) { <span class="keyword">return</span> callback(err); }
+      <span class="keyword">var</span> partial = replace.content(tag, data);
+      <span class="keyword">return</span> callback(<span class="literal">null</span>, partial);
+    });
+  });
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <h4>Partially.prototype.parsePartialName</h4>
+<p>Return the full path of the partial by converting the <code>tag</code>.</p>
+<ul>
+<li><code>tag</code>      is a string.</li>
+<li><code>callback</code> is a function.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Partially.prototype.parsePartialName = <span class="keyword">function</span>(tag, callback) {
+  <span class="keyword">var</span> filename = get.partialName(tag),
+      filepath = path.join(<span class="keyword">this</span>.partialsDir, <span class="string">'/'</span>, filename);
+  <span class="keyword">return</span> callback(filepath);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <h4>Partially.prototype.saveOutput</h4>
+<p>Return the filename and saves the output file with the <code>content</code>.</p>
+<ul>
+<li><code>filename</code> is a string.</li>
+<li><code>content</code>  is a string.</li>
+<li><code>callback</code> is a function.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Partially.prototype.saveOutput = <span class="keyword">function</span>(filename, content, callback) {
+  file.mkDir(<span class="keyword">this</span>.outputDir, <span class="keyword">function</span>(err) {
+    <span class="keyword">if</span> (err) { <span class="keyword">return</span> callback(err); }
+    file.save(filename, content, <span class="keyword">function</span>(err) {
+      <span class="keyword">if</span> (err) { <span class="keyword">return</span> callback(err); }
+      <span class="keyword">return</span> callback(<span class="literal">null</span>, filename);
+    });
+  });
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <h3>Exports</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Return a new <code>Partially</code> instance with the given <code>file</code>, <code>partials</code>
+and <code>output</code> paths.</p>
+<ul>
+<li><code>file</code>     is a string.</li>
+<li><code>partials</code> is a string.</li>
+<li><code>output</code>   is a string.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>module.exports = <span class="keyword">function</span>(file, partials, output) {
+  <span class="keyword">return</span> <span class="keyword">new</span> Partially(file, partials, output);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <h2>utils/get.js</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <h3>Modules</h3>
+<p>Import the required modules.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> path = require(<span class="string">'path'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <h3>Get</h3>
+<p>The constructor.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> Get = <span class="keyword">function</span>() {};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <h4>Tag</h4>
+<p>The regular expression for the <code>@include</code> pattern, ie:<br><code>&lt;!-- @include partial.ext --&gt;</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> TAG = <span class="regexp">/.*&lt;!--\s+@include\s+(.*\..*)\s+--&gt;.*/g</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <h4>Get.prototype.path</h4>
+<p>Return the full path of <code>filename</code>.</p>
+<ul>
+<li><code>filename</code> is a string.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Get.prototype.path = <span class="keyword">function</span>(filename) {
+  <span class="keyword">return</span> path.join(process.cwd(), <span class="string">'/'</span>, filename);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <h4>Get.prototype.filename</h4>
+<p>Return the base filename of the <code>filename</code>, ie:<br><code>index.html</code>.</p>
+<ul>
+<li><code>filename</code> is a string.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Get.prototype.filename = <span class="keyword">function</span>(filename) {
+  <span class="keyword">return</span> path.basename(filename);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <h4>Get.prototype.lines</h4>
+<p>Return an array of the <code>content</code> with normalized line breaks.</p>
+<ul>
+<li><code>content</code> is a string.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Get.prototype.lines = <span class="keyword">function</span>(content) {
+  <span class="keyword">return</span> content.replace(<span class="regexp">/(\r\n|\n|\r)/gm</span>, <span class="string">'\n'</span>).split(<span class="string">'\n'</span>);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <h4>Get.prototype.partialTag</h4>
+<p>Return whether or not the <code>content</code> matches the <code>@include</code> pattern.</p>
+<ul>
+<li><code>content</code> is a string.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Get.prototype.partialTag = <span class="keyword">function</span>(content) {
+  <span class="keyword">return</span> content.match(TAG);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <h4>Get.prototype.partialName</h4>
+<p>Return the filename of the <code>@include</code> pattern in the <code>content</code>, ie:<br><code>partial.html</code>.</p>
+<ul>
+<li><code>content</code> is a string.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Get.prototype.partialName = <span class="keyword">function</span>(content) {
+  <span class="keyword">return</span> content.replace(TAG, <span class="string">'$1'</span>);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <h3>Exports</h3>
+<p>Export <code>Get</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>module.exports = Get;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <h2>utils/convert.js</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <h3>Convert</h3>
+<p>The constructor.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> Convert = <span class="keyword">function</span>() {};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <h4>Convert.prototype.line</h4>
+<p>Return the <code>line</code> as a string.</p>
+<ul>
+<li><code>line</code> is an array.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Convert.prototype.line = <span class="keyword">function</span>(line) {
+  <span class="keyword">return</span> line.toString();
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <h4>Convert.prototype.lines</h4>
+<p>Return the <code>lines</code> as a string with linebreaks.</p>
+<ul>
+<li><code>lines</code> is an array.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Convert.prototype.lines = <span class="keyword">function</span>(lines) {
+  <span class="keyword">return</span> lines.join(<span class="string">'\n'</span>);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <h3>Exports</h3>
+<p>Export <code>Convert</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>module.exports = Convert;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <h2>utils/replace.js</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <h3>Replace</h3>
+<p>The constructor.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> Replace = <span class="keyword">function</span>() {};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <h4>Replace.prototype.content</h4>
+<p>Remove extraneous whitespace and return the <code>content</code> with 
+the <code>@include</code> pattern replaced with the actual markup content of 
+the partial file.</p>
+<ul>
+<li><code>content</code>     is a string.</li>
+<li><code>replacement</code> is a string.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Replace.prototype.content = <span class="keyword">function</span>(content, replacement) {
+  <span class="keyword">return</span> content.replace(content, replacement).trimRight();
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <h3>Exports</h3>
+<p>Export <code>Replace</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>module.exports = Replace;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              <h2>utils/file.js</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <h3>Modules</h3>
+<p>Import the required modules.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> fs = require(<span class="string">'fs'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              <h3>File</h3>
+<p>The constructor.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">var</span> File = <span class="keyword">function</span>() {};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-38">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-38">&#182;</a>
+              </div>
+              <h4>File.prototype.read</h4>
+<p>Read the <code>file</code> (synchronously) and returns the data.</p>
+<ul>
+<li><code>file</code>     is a string.</li>
+<li><code>callback</code> is a function.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>File.prototype.read = <span class="keyword">function</span>(file, callback) {
+  <span class="keyword">try</span> {
+    <span class="keyword">var</span> data = fs.readFileSync(file, { encoding: <span class="string">'utf8'</span> });
+    <span class="keyword">return</span> callback(<span class="literal">null</span>, data);
+  } <span class="keyword">catch</span>(err) {
+    <span class="keyword">return</span> callback(err);
+  }
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <h4>File.prototype.save</h4>
+<p>Save the <code>file</code> and <code>content</code> (synchronously).</p>
+<ul>
+<li><code>file</code>     is a string.</li>
+<li><code>content</code>  is a string.</li>
+<li><code>callback</code> is a function.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>File.prototype.save = <span class="keyword">function</span>(file, content, callback) {
+  <span class="keyword">try</span> {
+    fs.writeFileSync(file, content, { encoding: <span class="string">'utf8'</span> });
+    <span class="keyword">return</span> callback(<span class="literal">null</span>);
+  } <span class="keyword">catch</span>(err) {
+    <span class="keyword">return</span> callback(err);
+  }
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-40">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-40">&#182;</a>
+              </div>
+              <h4>File.prototype.mkDir</h4>
+<p>Create the <code>path</code> (synchronously).</p>
+<ul>
+<li><code>path</code>     is a string.</li>
+<li><code>callback</code> is a function.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>File.prototype.mkDir = <span class="keyword">function</span>(path, callback) {
+  <span class="keyword">try</span> {
+    <span class="keyword">if</span> (!fs.existsSync(path)) { fs.mkdirSync(path); }
+    <span class="keyword">return</span> callback(<span class="literal">null</span>);
+  } <span class="keyword">catch</span>(err) {
+    <span class="keyword">return</span> callback(err);
+  }
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-41">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-41">&#182;</a>
+              </div>
+              <h3>Exports</h3>
+<p>Export <code>File</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>module.exports = File;</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

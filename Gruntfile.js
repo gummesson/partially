@@ -48,11 +48,22 @@ module.exports = function(grunt) {
         'lib/utils/file.js'
       ],
       dest: 'tmp/index.js',
-      build: 'docco --output docs tmp/index.js'
+      build: 'docco --output site/docs tmp/index.js'
+    },
+
+    sass: {
+      src: 'assets/sass/style.scss',
+      dest: 'assets/css/style.css'
+    },
+
+    site: {
+      build: 'geno'
     }
   };
 
   grunt.initConfig({
+    project: project,
+
     jshint: {
       files: project.js.hint
     },
@@ -83,6 +94,18 @@ module.exports = function(grunt) {
         src: project.docs.src,
         dest: project.docs.dest,
         nonull: true
+      }
+    },
+
+    sass: {
+      build: {
+        options: {
+          style: 'compressed'
+        },
+
+        files: {
+          '<%= project.sass.dest %>' : '<%= project.sass.src %>'
+        }
       }
     },
 
@@ -120,14 +143,21 @@ module.exports = function(grunt) {
           stdout: true
         },
         command: project.docs.build
+      },
+
+      site: {
+        options: {
+          stdout: true
+        },
+        command: project.site.build
       }
     },
 
     copy: {
-      docs: {
+      site: {
         files: [{
           expand: true,
-          cwd:'docs/',
+          cwd:'site/',
           src: ['**'],
           dest: '../docs/'
         }]
@@ -149,9 +179,11 @@ module.exports = function(grunt) {
     'shell:markdown'
   ]);
 
-  grunt.registerTask('docs', [
+  grunt.registerTask('site', [
     'concat',
     'shell:docs',
+    'sass',
+    'shell:site',
     'copy'
   ]);
 

@@ -1,0 +1,10 @@
+{
+  "title"        : "Partially",
+  "introduction" : "<b>Partially</b> is a build tool for using <a href=\"http://hammerformac.com/\" alt=\"Hammer for Mac\">Hammer for Mac</a>-like <code>@include</code>'s in your markup language of choice.",
+  "installation" : "<p>You can also install it locally:</p><pre><code>npm install partially</code></pre>",
+  "usage"        : "<pre><code>&lt;!-- @include partial.ext --&gt;</code></pre><p>A public API is also available.</p>",
+  "docco"        : "docs/index.html",
+  "stylesheet"   : "assets/css/style.css",
+  "endorse"      : true,
+  "preferGlobal" : true
+}

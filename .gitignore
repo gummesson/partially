@@ -1,6 +1,8 @@
+.sass-cache/
 node_modules/
 test/tmp/
 test/fixtures/output/
 tmp/
-docs/
+assets/css/
+site/
 npm-debug.log

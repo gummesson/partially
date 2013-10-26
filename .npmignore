@@ -1,1 +1,4 @@
 examples/
+assets/
+.gitmodules
+geno.json
